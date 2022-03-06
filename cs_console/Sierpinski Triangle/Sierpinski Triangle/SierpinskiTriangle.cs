@@ -62,6 +62,24 @@ namespace Sierpinski_Triangle
             loop_cut();
         }
 
+        private String toPyramidString(String blocks)
+        {
+            if (blocks.Length == 1)
+            {
+                return "▲";
+            }
+
+            if (blocks.Length > 1)
+            {
+                StringBuilder sb = new StringBuilder(blocks);
+                sb[0] = '/';
+                sb[^1] = '\\';
+                blocks = sb.ToString();
+
+            }
+            return blocks;
+        }
+
         private void draw_init_triangle()
         {
             int size = Math.Min(main_width/2, main_height);
@@ -71,7 +89,7 @@ namespace Sierpinski_Triangle
             for (int i = 0; i < size; i++)
             {
                 Console.SetCursorPosition(size - i, i);
-                Console.WriteLine(new String('█', i*2));
+                Console.WriteLine(toPyramidString(new String('█', i*2)));
             }
 
 
@@ -84,17 +102,25 @@ namespace Sierpinski_Triangle
                 this.cutMiddleTriangle(this.triangles.First());
                 this.addNextFragments(this.triangles.First());
                 this.triangles.RemoveAt(0);
+
+                Console.SetCursorPosition(0, 0);
+                Console.Write("Hit enter for next triangle");
                 Console.ReadKey();
+                Console.SetCursorPosition(0, 0);
+                Console.Write(new String(' ', 27));
+
             }
         }
 
         private void addNextFragments(Triangle triangle)
         {
-            if (triangle.Length <= 1) return;
+            if (triangle.Length <= 6) return;
 
-            triangles.Add(new Triangle(triangle.X + triangle.Length/2   , triangle.Y                        , triangle.Length / 2));
-            triangles.Add(new Triangle(triangle.X                       , triangle.Y + triangle.Length / 2  , triangle.Length / 2));
-            triangles.Add(new Triangle(triangle.X + triangle.Length     , triangle.Y + triangle.Length / 2  , triangle.Length / 2));
+            int newLength = (int) Math.Round(((double) triangle.Length) / 2);
+
+            triangles.Add(new Triangle(triangle.X + newLength, triangle.Y                       , newLength));
+            triangles.Add(new Triangle(triangle.X                       , triangle.Y + newLength, newLength));
+            triangles.Add(new Triangle(triangle.X + triangle.Length     , triangle.Y + newLength, newLength));
         }
 
         private void cutMiddleTriangle(Triangle triangle)
