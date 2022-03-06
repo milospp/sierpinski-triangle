@@ -24,6 +24,7 @@ class Sierpinski {
 
     startCanvas() {
         this.resizeCanvas();
+        this.triangles = [];
 
         let length = Math.min(this.canvas.width, this.canvas.height)
 
@@ -50,6 +51,8 @@ class Sierpinski {
 
 
     addSmallTriangles(x, y, length) {
+        if (length < 3) return;
+
         let height = this.getTriangleHeight(length);
         let triangle1 = [x + length/4     , y               , length/2];
         let triangle2 = [x                , y + height / 2  , length/2];
@@ -60,7 +63,9 @@ class Sierpinski {
     }
 
     nextTrinagleCut() {
-        let [x,y,length] = this.triangles.pop();
+        if (this.triangles.length === 0) return;
+        
+        let [x,y,length] = this.triangles.shift();
         
         let white_y = y + this.getTriangleHeight(length)/2;
         let white_x = x + length / 4;
