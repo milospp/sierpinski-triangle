@@ -82,7 +82,15 @@ class Sierpinski {
     async nextTrinagleCut() {
         if (this.triangles.length === 0) return;
 
-        let [x,y,length] = this.triangles.shift();
+        let x,y,length;
+        if (document.getElementById('random').checked){
+            let element = Math.floor(Math.random()*this.triangles.length);
+            [x,y,length] = this.triangles[element];
+
+            this.triangles.splice(element, 1);
+        } else {
+            [x,y,length] = this.triangles.shift();
+        }
         
         let white_y = y + this.getTriangleHeight(length)/2;
         let white_x = x + length / 4;

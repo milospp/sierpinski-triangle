@@ -11,6 +11,10 @@ FON - Hackathon Algorithm
 <a href="https://ibb.co/M2rc6QP"><img src="https://i.ibb.co/2nxvNHc/S2.png" alt="S2" width="250px" border="0"></a>
 <a href="https://ibb.co/PtZKK45"><img src="https://i.ibb.co/pnvccZ3/S1.png" alt="S1" width="250px" border="0"></a>
 
+Random iteration:
+
+<a href="https://ibb.co/L5972Qd"><img src="https://i.ibb.co/74rm6gt/C4.png" alt="C4" width="250px" border="0"></a>
+
 # Method 2 - C# Ascii art
 1. Compile and run **cs_console\Sierpinski Triangle\Sierpinski Triangle** or open **Sierpinski Triangle.csproj** in Visual Studio
 2. Resize console for bigger/smaller triangle
